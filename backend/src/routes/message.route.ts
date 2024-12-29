@@ -1,12 +1,12 @@
 import express from 'express';
+import protect from '../middleware/protectMiddleware';
+import { getMessages, getUsersForConversation, sendMessage } from '../controllers/message.controller';
 
 const router = express.Router();
 
-// @desc Get all messages
-// @route GET /api/messages/conversation
-// @access Public
-router.get('/conversation', (_req, res) => {
-  res.send('Get conversation')
-})
+router.get('/conversations', protect, getUsersForConversation)
+router.get('/:id', protect, getMessages)
+router.post('/send/:id', protect, sendMessage)
+
 
 export default router;
