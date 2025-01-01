@@ -6,8 +6,6 @@ const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState<ConversationType[]>([]);
 
-  console.log(conversations);
-
   useEffect(() => {
     const getConversations = async () => {
       setLoading(true);

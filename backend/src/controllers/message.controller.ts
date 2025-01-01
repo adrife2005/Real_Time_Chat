@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import prisma from '../db/prisma';
+import { getReceiverSocketId, io } from '../socket/socket';
 
 // @desc Send a message
 // @route POST /api/messages/send/:id
@@ -51,6 +52,12 @@ export const sendMessage = async (req: Request, res: Response): Promise<Response
           }
         }
       })
+    }
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit('newMessage', newMessage);
     }
 
     return res.status(201).json(newMessage);
