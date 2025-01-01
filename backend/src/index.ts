@@ -6,6 +6,8 @@ import messageRoutes from './routes/message.route'
 
 dotenv.config()
 
+const PORT = process.env.PORT ?? 3001
+
 const app = express()
 
 app.use(cookieParser())
@@ -14,6 +16,6 @@ app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/messages', messageRoutes)
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000')
+app.listen(PORT, () => {
+  console.log('Server is running on http://localhost:' + PORT)
 })
