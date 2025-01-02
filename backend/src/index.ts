@@ -4,13 +4,11 @@ import dotenv from 'dotenv'
 import authRoutes from './routes/auth.route'
 import messageRoutes from './routes/message.route'
 import { app, server } from './socket/socket'
-import path from "path"
-
+import path from 'path'
 
 dotenv.config()
 
 const PORT = process.env.PORT ?? 3001
-const __dirname = path.resolve()
 
 app.use(cookieParser())
 app.use(express.json())

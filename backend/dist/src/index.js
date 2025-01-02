@@ -13,15 +13,14 @@ const socket_1 = require("./socket/socket");
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3001;
-const __dirname = path_1.default.resolve();
 socket_1.app.use((0, cookie_parser_1.default)());
 socket_1.app.use(express_1.default.json());
 socket_1.app.use('/api/auth', auth_route_1.default);
 socket_1.app.use('/api/messages', message_route_1.default);
-if (process.env.NODE_ENV === 'production') {
-    socket_1.app.use(express_1.default.static(path_1.default.join(__dirname, '../frontend/build')));
-    socket_1.app.get('*', (_req, res) => {
-        res.sendFile(path_1.default.join(__dirname, '../frontend/build/index.html'));
+if (process.env.NODE_ENV !== "development") {
+    socket_1.app.use(express_1.default.static(path_1.default.join(__dirname, "/frontend/dist")));
+    socket_1.app.get("*", (_req, res) => {
+        res.sendFile(path_1.default.join(__dirname, "frontend", "dist", "index.html"));
     });
 }
 socket_1.server.listen(PORT, () => {
