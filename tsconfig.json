@@ -12,6 +12,16 @@
     "noImplicitReturns": true, // Report error when not all code paths in function return a value.
     "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statement.
     "skipLibCheck": true, // this option will skip type checking all .d.ts files.
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "express",
+      "bcryptjs",
+      "cookie-parser",
+      "jsonwebtoken"
+    ]
   },
   "include": [
     "backend/src/**/*.ts"
